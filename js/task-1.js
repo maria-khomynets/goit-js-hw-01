@@ -6,38 +6,32 @@ console.log(makeTransaction(5, 3000)); // "You ordered 5 droids worth 15000 cred
 console.log(makeTransaction(3, 1000)); // "You ordered 3 droids worth 3000 credits!"
 console.log(makeTransaction(10, 500)); // "You ordered 10 droids worth 5000 credits!"
 
-const quarterOf = month => {
-  switch (month) {
-    case 1:
-    case 2:
-    case 3:
-      return 1;
-    case 4:
-    case 5:
-    case 6:
-      return 2;
-    case 7:
-    case 8:
-    case 9:
-      return 3;
-    case 10:
-    case 11:
-    case 12:
-      return 4;
-  }
-};
+function checkFileExtension(fileName, ext) {
+  const messageName = fileName.endsWith(ext);
 
-function updateLight(current) {
-  const colorGreen = 'green';
-  const colorYellow = 'yellow';
-  const colorRed = 'red';
-  if (current === colorGreen) {
-    return colorYellow;
-  } else if (current === colorYellow) {
-    return colorRed;
+  if (messageName) {
+    return 'File extension matches';
   } else {
-    return colorGreen;
+    return 'File extension does not match';
+  }
+}
+console.log(checkFileExtension('styles.css', '.js'));
+console.log(checkFileExtension('styles.css', '.css'));
+console.log(checkFileExtension('app.js', '.js'));
+console.log(checkFileExtension('app.js', '.html'));
+console.log(checkFileExtension('index.html', '.html'));
+console.log(checkFileExtension('index.html', '.html'));
+
+function getFileName(file) {
+  const mes = file.indexOf('.');
+
+  if (mes === -1) {
+    return file;
+  } else {
+    return file.slice(0, mes);
   }
 }
 
-console.log(updateLight('green'));
+console.log(getFileName('styles.css'));
+console.log(getFileName('app.js'));
+console.log(getFileName('app'));
